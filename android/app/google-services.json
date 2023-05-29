@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046165645440",
+    "project_id": "esp32-cam-firebase-ef165",
+    "storage_bucket": "esp32-cam-firebase-ef165.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046165645440:android:4e4cf0943245e548435e65",
+        "android_client_info": {
+          "package_name": "com.example.letsgrow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBslHa8b8MsX3qriroO73AmhfbTylv-PMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
