@@ -7,8 +7,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Firebase.initializeApp();
   initializeFirebase();
+  await Firebase.initializeApp();
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

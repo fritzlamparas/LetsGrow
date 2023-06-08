@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/link.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class SimpleDialog extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -178,8 +177,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               emailOfuser.clear();
                               messageOfuser.clear();
                             });
-                            FirebaseFirestore.instanceFor(
-                                    app: Firebase.app('FirestoreFeedback'))
+                            FirebaseFirestore.instance
                                 .collection("FeedbackMessages")
                                 .add(data);
                           }
@@ -215,7 +213,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               child: Link(
                                   target: LinkTarget.blank,
                                   uri: Uri.parse(
-                                      'https://www.facebook.com/picleafapp'),
+                                      'https://www.facebook.com/letsgrowapp'),
                                   builder: ((context, followLink) =>
                                       TextButton.icon(
                                         // <-- TextButton
@@ -243,7 +241,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               child: Link(
                                   target: LinkTarget.blank,
                                   uri: Uri.parse(
-                                      'mailto:picleafcontactus@gmail.com'),
+                                      'mailto:letsgrowcontactus@gmail.com'),
                                   builder: ((context, followLink) =>
                                       TextButton.icon(
                                         // <-- TextButton
