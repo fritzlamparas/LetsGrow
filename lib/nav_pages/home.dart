@@ -200,7 +200,7 @@ class _HomePageState extends State<homePage> {
                       ),
                       const SizedBox(height: 20), // Adjust the height as needed
                       Text(
-                        '$light',
+                        light,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -225,7 +225,7 @@ class _HomePageState extends State<homePage> {
                       CircularPercentIndicator(
                         radius: 60,
                         lineWidth: 5,
-                        percent: double.parse(soilm) / 100,
+                        percent: double.parse(soilm) / 300,
                         center: const Text(
                           'Soil Moisture',
                           style: TextStyle(
