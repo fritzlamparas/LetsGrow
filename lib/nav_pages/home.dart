@@ -188,7 +188,7 @@ class _HomePageState extends State<homePage> {
                       CircularPercentIndicator(
                         radius: 60,
                         lineWidth: 5,
-                        percent: double.parse(light) / 100,
+                        percent: double.parse(light) / 500,
                         center: const Text(
                           'Luminosity',
                           style: TextStyle(
@@ -288,7 +288,7 @@ class _HomePageState extends State<homePage> {
                   CircularPercentIndicator(
                     radius: 60,
                     lineWidth: 5,
-                    percent: double.parse(temp) / 100,
+                    percent: double.parse(ph) / 14,
                     center: const Text(
                       'pH Value',
                       style: TextStyle(
