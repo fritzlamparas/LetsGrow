@@ -46,6 +46,7 @@ dependencies:
   rflutter_alert: ^2.0.4
   get: ^4.6.5
   percent_indicator: ^4.0.1
+  webview_flutter: ^2.0.13
 
 flutter_native_splash:
   color: "#ffffff"

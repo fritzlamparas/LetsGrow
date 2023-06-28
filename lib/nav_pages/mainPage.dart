@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:letsgrow/nav_pages/aboutUs.dart';
-import 'package:letsgrow/nav_pages/camera.dart';
 import 'package:letsgrow/nav_pages/feedBack.dart';
 import 'package:letsgrow/nav_pages/home.dart';
+import 'package:letsgrow/nav_pages/webview_page.dart';
 
 class mainPage extends StatefulWidget {
   const mainPage({super.key});
@@ -14,7 +14,7 @@ class mainPage extends StatefulWidget {
 class _mainPageState extends State<mainPage> {
   List pages = [
     const homePage(),
-    const cameraPage(),
+    const WebviewPage(),
     const AboutUsPage(),
     const FeedbackPage()
   ];
@@ -44,9 +44,9 @@ class _mainPageState extends State<mainPage> {
           ), //Home
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.camera_alt,
+              Icons.area_chart,
             ),
-            label: 'Growth Rate',
+            label: 'Data Trend',
           ),
           BottomNavigationBarItem(
             icon: Icon(

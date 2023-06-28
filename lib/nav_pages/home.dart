@@ -130,7 +130,7 @@ class _HomePageState extends State<homePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               alignment: Alignment.center,
@@ -145,7 +145,7 @@ class _HomePageState extends State<homePage> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -168,7 +168,7 @@ class _HomePageState extends State<homePage> {
                         ),
                         progressColor: Colors.blue,
                       ),
-                      const SizedBox(height: 20), // Adjust the height as needed
+                      const SizedBox(height: 10), // Adjust the height as needed
                       Text(
                         '$humidity%',
                         style: const TextStyle(
@@ -188,7 +188,7 @@ class _HomePageState extends State<homePage> {
                       CircularPercentIndicator(
                         radius: 60,
                         lineWidth: 5,
-                        percent: double.parse(light) / 500,
+                        percent: double.parse(light) / 6000,
                         center: const Text(
                           'Luminosity',
                           style: TextStyle(
@@ -198,7 +198,7 @@ class _HomePageState extends State<homePage> {
                         ),
                         progressColor: Colors.yellow,
                       ),
-                      const SizedBox(height: 20), // Adjust the height as needed
+                      const SizedBox(height: 10), // Adjust the height as needed
                       Text(
                         light,
                         style: const TextStyle(
@@ -212,7 +212,7 @@ class _HomePageState extends State<homePage> {
               ],
             ),
             const SizedBox(
-              height: 30,
+              height: 15,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -235,7 +235,7 @@ class _HomePageState extends State<homePage> {
                         ),
                         progressColor: Colors.green,
                       ),
-                      const SizedBox(height: 20), // Adjust the height as needed
+                      const SizedBox(height: 10), // Adjust the height as needed
                       Text(
                         '$soilm%',
                         style: const TextStyle(
@@ -264,7 +264,7 @@ class _HomePageState extends State<homePage> {
                         ),
                         progressColor: Colors.red,
                       ),
-                      const SizedBox(height: 20), // Adjust the height as needed
+                      const SizedBox(height: 10), // Adjust the height as needed
                       Text(
                         '$temp °C',
                         style: const TextStyle(
@@ -278,7 +278,7 @@ class _HomePageState extends State<homePage> {
               ],
             ),
             const SizedBox(
-              height: 30,
+              height: 15,
             ),
             Container(
               alignment: Alignment.center,
@@ -298,7 +298,7 @@ class _HomePageState extends State<homePage> {
                     ),
                     progressColor: Colors.orange,
                   ),
-                  const SizedBox(height: 20), // Adjust the height as needed
+                  const SizedBox(height: 10), // Adjust the height as needed
                   Text(
                     ph,
                     style: const TextStyle(
