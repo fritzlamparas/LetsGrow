@@ -1,7 +1,14 @@
 // ignore_for_file: camel_case_types, use_build_context_synchronously, unnecessary_null_comparison
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -11,6 +18,7 @@ class homePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<homePage> {
+  int notificationid = 0;
   String humidity = '0';
   String light = '0';
   String soilm = '0';
@@ -20,7 +28,172 @@ class _HomePageState extends State<homePage> {
   @override
   void initState() {
     super.initState();
+
     fetchReadings();
+    const checkInterval =
+        Duration(seconds: 60); // Adjust the interval as needed
+    Timer.periodic(checkInterval, (timer) {
+      checkSoilM();
+      Future.delayed(const Duration(seconds: 2), () {
+        checkLuminosity();
+      });
+      Future.delayed(const Duration(seconds: 3), () {
+        checkTemperature();
+      });
+      Future.delayed(const Duration(seconds: 4), () {
+        checkHumidity();
+      });
+      Future.delayed(const Duration(seconds: 5), () {
+        checkpH();
+      });
+    });
+
+    // Initialize the plugin
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  void checkHumidity() async {
+    if (double.parse(humidity) >= 90.0) {
+      showHumidityAlert('Humidity is above 90 percent.');
+    } else if (double.parse(humidity) <= 50.0) {
+      showHumidityAlert('Humidity is below 50 percent.');
+    }
+  }
+
+  void checkLuminosity() async {
+    if (double.parse(light) >= 6001) {
+      showLuminosityAlert('Luminosity is above 6000 lux.');
+    } else if (double.parse(light) <= 5000.0) {
+      showLuminosityAlert('Luminosity is below 5000 lux.');
+    }
+  }
+
+  void checkTemperature() async {
+    if (double.parse(temp) >= 30.0) {
+      showTemperatureAlert('Temperature is above 30 degrees.');
+    } else if (double.parse(temp) <= 18.0) {
+      showTemperatureAlert('Temperature is below 18 degrees.');
+    }
+  }
+
+  void checkSoilM() async {
+    if (double.parse(soilm) >= 85.0) {
+      showSoilMoistureAlert('Soil Moisture is above 85 percent.');
+    } else if (double.parse(soilm) <= 70.0) {
+      showSoilMoistureAlert('Soil Moisture is below 70 percent.');
+    }
+  }
+
+  void checkpH() async {
+    if (double.parse(ph) >= 8.0) {
+      showPhAlert('pH is above 8.');
+    } else if (double.parse(ph) <= 6.5) {
+      showPhAlert('pH is below 6.5.');
+    }
+  }
+
+  void showTemperatureAlert(String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'temperature_channel',
+      'Temperature Alert',
+      'Alerts when temperature is above 30 degrees or below 18 degrees',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    notificationid++;
+    await flutterLocalNotificationsPlugin.show(
+      notificationid,
+      'Temperature Alert',
+      message,
+      platformChannelSpecifics,
+    );
+  }
+
+  void showSoilMoistureAlert(String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'soilm_channel',
+      'Soil Moisture Alert',
+      'Alerts when soil moisture is above 85% or below 70%',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    notificationid++;
+    await flutterLocalNotificationsPlugin.show(
+      notificationid,
+      'Soil Moisture Alert',
+      message,
+      platformChannelSpecifics,
+    );
+  }
+
+  void showPhAlert(String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'ph_channel',
+      'pH Alert',
+      'Alerts when pH is above 8 or below 6.5',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    notificationid++;
+    await flutterLocalNotificationsPlugin.show(
+      notificationid,
+      'pH Alert',
+      message,
+      platformChannelSpecifics,
+    );
+  }
+
+  void showHumidityAlert(String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'humidity_channel',
+      'Humidity Alert',
+      'Alerts when humidity is above 90 percent or below 50 percent',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    notificationid++;
+    await flutterLocalNotificationsPlugin.show(
+      notificationid,
+      'Humidity Alert',
+      message,
+      platformChannelSpecifics,
+    );
+  }
+
+  void showLuminosityAlert(String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'luminosity_channel',
+      'Luminosity Alert',
+      'Alerts when luminosity is above 6000 lux or below 5000 lux',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    notificationid++;
+    await flutterLocalNotificationsPlugin.show(
+      notificationid,
+      'Luminosity Alert',
+      message,
+      platformChannelSpecifics,
+    );
   }
 
   void fetchReadings() {
@@ -33,6 +206,9 @@ class _HomePageState extends State<homePage> {
         // You can use `data` here
         setState(() {
           humidity = data.toString();
+          if (kDebugMode) {
+            print('hum: ${double.parse(humidity)}');
+          }
         });
       } else {
         // `data` is null, indicating that it did not fetch a value
@@ -50,6 +226,9 @@ class _HomePageState extends State<homePage> {
         // You can use `data` here
         setState(() {
           light = data.toString();
+          if (kDebugMode) {
+            print('L: ${double.parse(light)}');
+          }
         });
       } else {
         // `data` is null, indicating that it did not fetch a value
@@ -67,6 +246,9 @@ class _HomePageState extends State<homePage> {
         // You can use `data` here
         setState(() {
           soilm = data.toString();
+          if (kDebugMode) {
+            print('sm: ${double.parse(soilm)}');
+          }
         });
       } else {
         // `data` is null, indicating that it did not fetch a value
@@ -84,6 +266,9 @@ class _HomePageState extends State<homePage> {
         // You can use `data` here
         setState(() {
           temp = data.toString();
+          if (kDebugMode) {
+            print('temp: ${double.parse(temp)}');
+          }
         });
       } else {
         // `data` is null, indicating that it did not fetch a value
@@ -101,6 +286,9 @@ class _HomePageState extends State<homePage> {
         // You can use `data` here
         setState(() {
           ph = data.toString();
+          if (kDebugMode) {
+            print('ph: ${double.parse(ph)}');
+          }
         });
       } else {
         // `data` is null, indicating that it did not fetch a value
@@ -225,7 +413,7 @@ class _HomePageState extends State<homePage> {
                       CircularPercentIndicator(
                         radius: 60,
                         lineWidth: 5,
-                        percent: double.parse(soilm) / 300,
+                        percent: double.parse(soilm) / 100,
                         center: const Text(
                           'Soil Moisture',
                           style: TextStyle(

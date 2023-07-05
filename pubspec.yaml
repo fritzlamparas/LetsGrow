@@ -47,6 +47,7 @@ dependencies:
   get: ^4.6.5
   percent_indicator: ^4.0.1
   webview_flutter: ^2.0.13
+  flutter_local_notifications: ^5.0.0
 
 flutter_native_splash:
   color: "#ffffff"
@@ -95,14 +96,6 @@ flutter:
   - assets/images/Russel_pic.jpg
   - assets/images/Ryan_pic.jpg
   - assets/images/logo.png
-  - assets/picleaf_model_fp16.tflite
-  - assets/labels.txt
-  - assets/Images_of_Plant/0.png
-  - assets/Images_of_Plant/1.png
-  - assets/Images_of_Plant/2.png
-  - assets/Images_of_Plant/3.png
-  - assets/Images_of_Plant/4.png
-  - assets/Images_of_Plant/5.png  
   
 
 
