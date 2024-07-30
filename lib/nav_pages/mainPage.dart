@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:letsgrow/nav_pages/aboutUs.dart';
 import 'package:letsgrow/nav_pages/feedBack.dart';
 import 'package:letsgrow/nav_pages/home.dart';
+import 'package:letsgrow/nav_pages/photodisplaypage.dart';
 import 'package:letsgrow/nav_pages/webview_page.dart';
 
 class mainPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _mainPageState extends State<mainPage> {
   List pages = [
     const homePage(),
     const WebviewPage(),
+    const PhotoDisplayPage(),
     const AboutUsPage(),
     const FeedbackPage()
   ];
@@ -46,7 +48,13 @@ class _mainPageState extends State<mainPage> {
             icon: Icon(
               Icons.area_chart,
             ),
-            label: 'Data Trend',
+            label: 'Charts',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.access_time,
+            ),
+            label: 'Growth',
           ),
           BottomNavigationBarItem(
             icon: Icon(

@@ -7,6 +7,16 @@ Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    name: 'LGStorage',
+    options: const FirebaseOptions(
+      appId: '1:1046165645440:android:4e4cf0943245e548435e65',
+      apiKey: 'AIzaSyBslHa8b8MsX3qriroO73AmhfbTylv-PMQ',
+      projectId: 'esp32-cam-firebase-ef165',
+      messagingSenderId: '1046165645440',
+      storageBucket: "esp32-cam-firebase-ef165.appspot.com",
+    ),
+  );
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

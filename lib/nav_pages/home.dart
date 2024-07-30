@@ -30,8 +30,7 @@ class _HomePageState extends State<homePage> {
     super.initState();
 
     fetchReadings();
-    const checkInterval =
-        Duration(seconds: 60); // Adjust the interval as needed
+    const checkInterval = Duration(minutes: 5); // Adjust the interval as needed
     Timer.periodic(checkInterval, (timer) {
       checkSoilM();
       Future.delayed(const Duration(seconds: 2), () {
@@ -338,102 +337,7 @@ class _HomePageState extends State<homePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularPercentIndicator(
-                        radius: 60,
-                        lineWidth: 5,
-                        percent: double.parse(humidity) / 100,
-                        center: const Text(
-                          'Humidity',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        progressColor: Colors.blue,
-                      ),
-                      const SizedBox(height: 10), // Adjust the height as needed
-                      Text(
-                        '$humidity%',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Light Progress Bar
-                Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularPercentIndicator(
-                        radius: 60,
-                        lineWidth: 5,
-                        percent: double.parse(light) / 6000,
-                        center: const Text(
-                          'Luminosity',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        progressColor: Colors.yellow,
-                      ),
-                      const SizedBox(height: 10), // Adjust the height as needed
-                      Text(
-                        light,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularPercentIndicator(
-                        radius: 60,
-                        lineWidth: 5,
-                        percent: double.parse(soilm) / 100,
-                        center: const Text(
-                          'Soil Moisture',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        progressColor: Colors.green,
-                      ),
-                      const SizedBox(height: 10), // Adjust the height as needed
-                      Text(
-                        '$soilm%',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ), // Temperature Progress Bar
+                // Temperature Progress Bar
                 Container(
                   alignment: Alignment.center,
                   child: Column(
@@ -463,11 +367,107 @@ class _HomePageState extends State<homePage> {
                     ],
                   ),
                 ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 60,
+                        lineWidth: 5,
+                        percent: double.parse(humidity) / 100,
+                        center: const Text(
+                          'Humidity',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        progressColor: Colors.blue,
+                      ),
+                      const SizedBox(height: 10), // Adjust the height as needed
+                      Text(
+                        '$humidity%',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
             const SizedBox(
               height: 15,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 60,
+                        lineWidth: 5,
+                        percent: double.parse(ph) / 14,
+                        center: const Text(
+                          'pH Value',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        progressColor: Colors.orange,
+                      ),
+                      const SizedBox(height: 10), // Adjust the height as needed
+                      Text(
+                        ph,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 60,
+                        lineWidth: 5,
+                        percent: double.parse(soilm) / 100,
+                        center: const Text(
+                          'Soil Moisture',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        progressColor: Colors.green,
+                      ),
+                      const SizedBox(height: 10), // Adjust the height as needed
+                      Text(
+                        '$soilm%',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            // Light Progress Bar
             Container(
               alignment: Alignment.center,
               child: Column(
@@ -476,19 +476,19 @@ class _HomePageState extends State<homePage> {
                   CircularPercentIndicator(
                     radius: 60,
                     lineWidth: 5,
-                    percent: double.parse(ph) / 14,
+                    percent: double.parse(light) / 7000,
                     center: const Text(
-                      'pH Value',
+                      'Luminosity',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    progressColor: Colors.orange,
+                    progressColor: Colors.yellow,
                   ),
                   const SizedBox(height: 10), // Adjust the height as needed
                   Text(
-                    ph,
+                    light,
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
