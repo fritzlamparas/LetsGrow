@@ -121,18 +121,6 @@ class _PhotoDisplayPageState extends State<PhotoDisplayPage> {
     String period = hourInt < 12 ? 'AM' : 'PM';
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "Surface Area Estimations",
-          style: TextStyle(
-            color: Color.fromRGBO(12, 192, 223, 1.0),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromARGB(255, 95, 94, 94),
-      ),
       body: Stack(
         children: [
           Visibility(
@@ -141,6 +129,20 @@ class _PhotoDisplayPageState extends State<PhotoDisplayPage> {
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 30),
+                  const Center(
+                    child: Text(
+                      'Surface Area Estimations',
+                      style: TextStyle(
+                        fontFamily: 'RobotoMedium',
+                        fontSize: 18,
+                        color: Color.fromRGBO(12, 192, 223, 1.0),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Center(
                     child: Text(
                       'Date: $monthName $day',

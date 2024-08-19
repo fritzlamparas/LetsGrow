@@ -6,17 +6,6 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "LetsGrow",
-          style: TextStyle(
-              color: Color.fromRGBO(12, 192, 223, 1.0),
-              fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromARGB(255, 95, 94, 94),
-      ),
       backgroundColor: const Color(0xffeeeeee),
       body: SingleChildScrollView(
         child: Column(

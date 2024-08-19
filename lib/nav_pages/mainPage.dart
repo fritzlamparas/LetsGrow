@@ -13,7 +13,7 @@ class mainPage extends StatefulWidget {
 }
 
 class _mainPageState extends State<mainPage> {
-  List pages = [
+  final List<Widget> pages = [
     const homePage(),
     const WebviewPage(),
     const PhotoDisplayPage(),
@@ -21,7 +21,41 @@ class _mainPageState extends State<mainPage> {
     const FeedbackPage()
   ];
   int currentIndex = 0;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              'LetsGrow requires an internet connection to get the latest updates.',
+              style: TextStyle(
+                  color: Color(0xffeeeeee),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  fontFamily: 'RobotoMedium')),
+          backgroundColor: Color.fromRGBO(12, 192, 223, 1.0),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void onTap(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     setState(() {
       currentIndex = index;
     });
@@ -30,7 +64,27 @@ class _mainPageState extends State<mainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "LetsGrow",
+          style: TextStyle(
+              color: Color.fromRGBO(12, 192, 223, 1.0),
+              fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
+        shadowColor: const Color.fromARGB(255, 95, 94, 94),
+      ),
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        children: pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
         currentIndex: currentIndex,
